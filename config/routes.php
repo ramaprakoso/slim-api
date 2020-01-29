@@ -10,4 +10,10 @@ return function (App $app) {
 
         return $response;
     });
+
+    $app->get('/test', function (ServerRequest $request, Response $response, array $args) {
+        $payload = json_encode(['hello' => 'world'], JSON_PRETTY_PRINT);
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+    });
 };
